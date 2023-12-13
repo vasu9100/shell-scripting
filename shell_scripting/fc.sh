@@ -2,21 +2,26 @@
 
 ID=$(id -u)
 
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+NC="\033[0m"
+
+
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo "$2: failed"
-        echo "Error details: $3"
+        echo " $RED $2: failed $NC"
+        echo " $RED Error details: $3"
         exit 1
     else
-        echo "$2:  success"  
+        echo "$GREEN $2:  success"  
     fi
 }
 
 if [ $ID -ne 0 ]; then
-    echo "ERROR: You are not a root user"
+    echo " $RED ERROR: You are not a root user"
     exit 1
 else
-    echo "Yes, you ARE a ROOT USER"
+    echo " $GREEN Yes, you ARE a ROOT USER"
 fi 
 
 dnf install nginx -y
