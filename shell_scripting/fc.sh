@@ -5,7 +5,7 @@ ID=$(id -u)
 VALIDATE(){
     if [ "$1" -ne 0 ]; then
         echo "$2: Installation is failed"
-        exit 1
+        echo "Error details: $3"
     else
         echo "$2: Installation is success"  
     fi
@@ -32,7 +32,7 @@ VALIDATE $? "Nginx start Done"
 
 rm -rf /usr/share/nginx/html/*
 
-VALIDATE $? "Removed Old html Content"
+VALIDATE $? "Removed Old html Content" "Unable to remove old content"
 
 curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip
 
